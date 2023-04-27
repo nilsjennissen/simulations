@@ -19,7 +19,7 @@ settings = {}
 # EVOLUTION SETTINGS
 settings['pop_size'] = 50       # number of organisms
 settings['food_num'] = 100      # number of food particles
-settings['gens'] = 5            # number of generations
+settings['gens'] = 100            # number of generations
 settings['elitism'] = 0.20      # elitism (selection bias)
 settings['mutate'] = 0.10       # mutation rate
 
@@ -30,8 +30,8 @@ settings['dr_max'] = 720        # max rotational speed      (degrees per second)
 settings['v_max'] = 0.5         # max velocity              (units per second)
 settings['dv_max'] =  0.25      # max acceleration (+/-)    (units per second^2)
 
-settings['x_min'] = -2.0        # arena western border
-settings['x_max'] =  2.0        # arena eastern border
+settings['x_min'] = -4.0        # arena western border
+settings['x_max'] =  4.0        # arena eastern border
 settings['y_min'] = -2.0        # arena southern border
 settings['y_max'] =  2.0        # arena northern border
 
@@ -82,7 +82,7 @@ def save_frame(settings, organisms, foods, gen, time):
     #plt.savefig(str(gen)+'-'+str(time)+'.png', dpi=100)
     #plt.show()
     filename = f'data/{gen}-{time}.png'
-    plt.savefig(filename, dpi=100)
+    plt.savefig(filename, dpi=200)
     return filename
 
 #%%
@@ -273,10 +273,10 @@ class organism():
 # Plotting
 def plot_organism(x1, y1, theta, ax):
 
-    circle = Circle([x1,y1], 0.05, edgecolor = 'g', facecolor = 'lightgreen', zorder=8)
+    circle = Circle([x1,y1], 0.05, edgecolor = 'g', facecolor = 'royalblue', zorder=8)
     ax.add_artist(circle)
 
-    edge = Circle([x1,y1], 0.05, facecolor='None', edgecolor = 'darkgreen', zorder=8)
+    edge = Circle([x1,y1], 0.05, facecolor='None', edgecolor = 'midnightblue', zorder=8)
     ax.add_artist(edge)
 
     tail_len = 0.075
@@ -284,13 +284,13 @@ def plot_organism(x1, y1, theta, ax):
     x2 = cos(radians(theta)) * tail_len + x1
     y2 = sin(radians(theta)) * tail_len + y1
 
-    ax.add_line(lines.Line2D([x1,x2],[y1,y2], color='darkgreen', linewidth=1, zorder=10))
+    ax.add_line(lines.Line2D([x1,x2],[y1,y2], color='darkred', linewidth=1, zorder=10))
 
     pass
 
 
 def plot_food(x1, y1, ax):
-    circle = Circle([x1,y1], 0.03, edgecolor = 'darkslateblue', facecolor = 'mediumslateblue', zorder=5)
+    circle = Circle([x1,y1], 0.03, edgecolor = 'darkgreen', facecolor = 'lightgreen', zorder=5)
     ax.add_artist(circle)
 
     pass
