@@ -13,7 +13,7 @@ from math import sin, cos, radians
 import imageio
 import os
 
-#%%
+#%% NETWORK AND ORGANISM SETTINGS
 settings = {}
 
 # EVOLUTION SETTINGS
@@ -42,7 +42,7 @@ settings['inodes'] = 1          # number of input nodes
 settings['hnodes'] = 5          # number of hidden nodes
 settings['onodes'] = 2          # number of output nodes
 
-#%%
+#%% ORIENTATION FUNCTIONS
 
 def dist(x1,y1,x2,y2):
     return sqrt((x2-x1)**2 + (y2-y1)**2)
@@ -55,6 +55,7 @@ def calc_heading(org, food):
     if abs(theta_d) > 180: theta_d += 360
     return theta_d / 180
 
+#%% FRAME GENERATION FUNCTIONS
 def save_frame(settings, organisms, foods, gen, time):
     fig, ax = plt.subplots()
     fig.set_size_inches(9.6, 5.4)
@@ -86,7 +87,7 @@ def save_frame(settings, organisms, foods, gen, time):
 
     return image
 
-#%%
+#%% ORGAMISM EVOLVES
 def evolve(settings, organisms_old, gen):
 
     elitism_num = int(floor(settings['elitism'] * settings['pop_size']))
@@ -153,7 +154,7 @@ def evolve(settings, organisms_old, gen):
         organisms_new.append(organism(settings, wih=wih_new, who=who_new, name='gen['+str(gen)+']-org['+str(w)+']'))
 
     return organisms_new, stats
-#%%
+#%% SIMULATE ORGANISMS
 def simulate(settings, organisms, foods, gen):
 
     total_time_steps = int(settings['gen_time'] / settings['dt'])
